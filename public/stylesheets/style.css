@@ -1,0 +1,118 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('/images/Fondo4k.jpg');
+  background-size: cover; /* Ajustar la imagen al tamaño del contenedor */
+  background-position: center; /* Centrar la imagen en el contenedor */
+  background-repeat: no-repeat; /* Evitar repetición de la imagen */
+  background-attachment: fixed; /* Fijar la imagen de fondo mientras se desplaza */
+}
+
+a {
+  color: #00B7FF;
+}
+
+/* Estilos para el formulario de login */
+form {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  text-align: center; /* Centrar el contenido del formulario */
+   /* Establecer la imagen de fondo */
+  
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+label, input, button {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #23afe6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.login-container {
+  text-align: center; /* Centra el contenido del contenedor horizontalmente */
+  /* Estilos adicionales para el contenedor del formulario (si los tienes) */
+}
+.login-container {
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  backdrop-filter: blur(0px); /* Aplicar efecto de desenfoque al fondo */
+  padding: 20px; /* Espacio interior del contenedor */
+  border-radius: 10px; /* Bordes redondeados */
+  max-width: 400px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Centrar horizontalmente */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+.registration-container {
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  backdrop-filter: blur(10px); /* Aplicar efecto de desenfoque al fondo */
+  padding: 20px; /* Espacio interior del contenedor */
+  border-radius: 10px; /* Bordes redondeados */
+  max-width: 400px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Centrar horizontalmente */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+input[type="submit"] {
+  background-color: #007bff; /* Color de fondo del botón (puedes cambiarlo al color que prefieras) */
+  color: #ffffff; /* Color del texto del botón */
+  padding: 10px 20px; /* Espaciado interno (padding) del botón */
+  border: none; /* Quitamos el borde del botón */
+  border-radius: 5px; /* Bordes redondeados del botón */
+  cursor: pointer; /* Cambiamos el cursor al pasar por encima del botón */
+  transition: background-color 0.5s ease; /* Transición suave para el cambio de color de fondo */
+}
+
+/* Estilo al pasar el cursor por encima del botón */
+input[type="submit"]:hover {
+  background-color: #0056b3; /* Cambiamos el color de fondo cuando el cursor está sobre el botón */
+}
+.registration-container {
+  text-align: center; /* Centra el contenido del contenedor horizontalmente */
+  /* Estilos adicionales para el contenedor del formulario (si los tienes) */
+}
+
+/* Estilos para el footer */
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #c0c0c0; /* Cambia el color de fondo a tu preferencia */
+  color: #ffffff; /* Cambia el color del texto a tu preferencia */
+  padding: 3px;
+  display: flex; /* Para usar flexbox y distribuir los elementos en dos columnas */
+  justify-content: space-around; /* Distribuye los elementos en dos columnas con espacio entre ellos */
+}
+
+/* Estilos para las columnas dentro del footer */
+.footer .column {
+  flex: 2; /* Para que cada columna ocupe el mismo espacio */
+  text-align: center;
+}

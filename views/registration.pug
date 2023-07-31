@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  nav
+    // Content of your navigation (if any)
+  div.registration-container
+    h1 Registro
+    form(action="/auth/register", method="POST")
+      label(for="email") Correo electrónico
+      input(type="text", id="email", name="Correo", placeholder="Correo electrónico", required)
+      br
+      br
+
+      label(for="nombre") Nombre
+      input(type="text", id="nombre", name="Nombre", placeholder="Nombre", required)
+      br
+      br
+
+      label(for="apellido") Apellido
+      input(type="text", id="apellido", name="Apellido", placeholder="Apellido", required)
+      br
+      br
+
+      label(for="password") Contraseña
+      input(type="password", id="password", name="Password", placeholder="Contraseña", required)
+      br
+      br
+
+      input(type="submit", value="Registrarse")
+      .login-link
+        | ¿Ya tienes una cuenta?
+        a(href="/auth/login") Iniciar sesión

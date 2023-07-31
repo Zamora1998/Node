@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  nav
+  div.login-container   
+    h1 Login
+    form(action="/auth/login", method="post")
+      div
+        label(for="email") Correo:
+        input(type="text", name="Correo", id="correo", required)
+      div
+        label(for="password") Contraseña:
+        input(type="password", name="Password", id="password", required)
+      button(type="submit", name="buttonlogin") Login
+
+      // Link to registration page
+      a(href="/auth/register") Registrarse
+    if message
+      

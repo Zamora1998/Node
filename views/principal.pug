@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    h1 Tabla de Aerolíneas
+        table
+        tr
+        th ID
+        th Aerolinea
+        th Asiento
+        th Destino
+        th Fecha Llegada
+        th Fecha Salida
+        th Pais de Salida
+        th Precio
+        each aerolinea in aerolineas
+            tr
+            td= aerolinea._id
+            td= aerolinea.Aerolinea
+            td= aerolinea.Asiento
+            td= aerolinea.Destino
+            td= aerolinea.FechaLlegada
+            td= aerolinea.FechaSalida
+            td= aerolinea.PaisSalida
+            td= aerolinea.Precio
