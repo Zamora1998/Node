@@ -27,15 +27,27 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.redirect("/auth/login");
 });
-// Ruta para mostrar la página principal
-app.get("/principal", (req, res) => {
-  res.render("principal"); // Renderiza la plantilla "principal.pug"
+
+
+//trae la data de aerolineas
+app.get("/principal", async (req, res) => {
+  try {
+    const aerolineas = await Aerolinea.find(); // Consulta todas las aerolíneas desde la base de datos
+    res.render("principal", { aerolineas }); // Pasa las aerolíneas a la plantilla "principal.pug"
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: "Error al obtener los datos de la base de datos" });
+  }
 });
+
+
+
 // Rutas
 const indexRouter = require("./routes/index");
 const usersRouter = require("./model/users"); // Esto puede estar incorrecto, asegúrate de tener el archivo correcto.
 const usersAuth = require("./routes/auth");
-const Aerolinea = require("./model/aerolinea.js");
+const Aerolinea = require("./model/aerolineas.js");
 
 app.use("/auth", usersAuth);
 app.use("/users", usersRouter);

@@ -44,10 +44,14 @@ router.post("/login", async (req, res) => {
     }
     // Si las credenciales son correctas, redirigir o enviar una respuesta de éxito
     // Aquí puedes redirigir a una página de inicio de sesión exitoso o devolver un mensaje JSON
-    res.status(200).json({ message: "Inicio de sesión exitoso", user: user });
+    //res.status(200).json({ message: "Inicio de sesión exitoso", user: user });
+    res.redirect("/principal");
   } catch (err) {
     res.status(500).json({ message: "Error de servidor" });
   }
 });
+
+
+
 
 module.exports = router;

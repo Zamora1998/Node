@@ -99,20 +99,65 @@ input[type="submit"]:hover {
 }
 
 /* Estilos para el footer */
-.footer {
+footer {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #c0c0c0; /* Cambia el color de fondo a tu preferencia */
-  color: #ffffff; /* Cambia el color del texto a tu preferencia */
+  backdrop-filter: blur(20px); /* Difuminado del fondo (requiere soporte del navegador) */
+  color: #4e4e4e; /* Cambia el color del texto a tu preferencia */
   padding: 3px;
   display: flex; /* Para usar flexbox y distribuir los elementos en dos columnas */
   justify-content: space-around; /* Distribuye los elementos en dos columnas con espacio entre ellos */
 }
 
 /* Estilos para las columnas dentro del footer */
-.footer .column {
+footer .column {
   flex: 2; /* Para que cada columna ocupe el mismo espacio */
   text-align: center;
+}
+.containernew {
+  /*background-image: url("ruta/imagen-fondo.jpg"); /* Ruta de la imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra para el contenedor */
+  backdrop-filter: blur(100px); /* Difuminado del fondo (requiere soporte del navegador) */
+  color: rgb(22, 22, 22); /* Color del texto dentro del contenedor */
+}
+
+table {
+  width: 100%;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #d4d4d4;
+  text-align: center;
+}
+
+th {
+  background-color: #e4e4e4;
+}
+
+
+.btn-comprar {
+  background-color: #007bff;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 1px;
+}
+
+.btn-comprar:hover {
+  background-color: #0056b3;
+}
+
+.added-comprar {
+  background-color: #4caf50; /* Color verde cuando está agregado al carrito */
+  color: #fff;
 }

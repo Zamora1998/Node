@@ -1,10 +1,10 @@
 extends layout
 
 block content
-    h1 Tabla de Aerolíneas
-        table
-        tr
-        th ID
+  .containernew
+    h1 Lista de aerolíneas
+    table
+      tr
         th Aerolinea
         th Asiento
         th Destino
@@ -12,13 +12,24 @@ block content
         th Fecha Salida
         th Pais de Salida
         th Precio
-        each aerolinea in aerolineas
-            tr
-            td= aerolinea._id
-            td= aerolinea.Aerolinea
-            td= aerolinea.Asiento
-            td= aerolinea.Destino
-            td= aerolinea.FechaLlegada
-            td= aerolinea.FechaSalida
-            td= aerolinea.PaisSalida
-            td= aerolinea.Precio
+        th Shopping Cart
+      each aerolinea in aerolineas
+        tr
+          td= aerolinea.Aerolinea
+          td= aerolinea.Asiento
+          td= aerolinea.Destino
+          td= aerolinea.FechaLlegada
+          td= aerolinea.FechaSalida
+          td= aerolinea.PaisSalida
+          td= aerolinea.Precio
+          td
+            
+            button(class="btn-comprar", data-id=aerolinea._id) Comprar
+    script.
+        $(document).ready(function() {
+            $(".btn-comprar").on("click", function() {
+                $(this).toggleClass("added-comprar");
+            });
+        });
+     script(src="/public/javascripts/modal.js") // Agrega aquí la ruta al archivo modal.js
+     
