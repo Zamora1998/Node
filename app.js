@@ -76,7 +76,7 @@ app.post("/comprardata", async (req, res) => {
     if (!updatedAerolinea) {
       return res.status(404).json({ message: "Aerolínea no encontrada." });
     }
-    req.flash("successMessage", "¡Compra realizada exitosamente!");
+    //req.flash("successMessage", "¡Compra realizada exitosamente!");
     res.redirect("/principal");
     // Aquí puedes realizar otras acciones o enviar una respuesta adecuada al cliente
     return res
