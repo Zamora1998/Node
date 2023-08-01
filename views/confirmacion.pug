@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  h1 hola
+  .containerconfirmacion
+    h2 Confirmación de Compra
+    p Los siguientes datos se han registrado para la compra:
+    // Mostrar los datos recibidos
+    p Aerolínea ID: #{data.aerolineaId}
+    p Asiento: #{data.asiento}
+    p Destino: #{data.destino}
+    p Fecha Llegada: #{data.fechaLlegada}
+    p Fecha Salida: #{data.fechaSalida}
+    p País Salida: #{data.paisSalida}
+    p Precio: #{data.precio}
+    p Tipo Pago: #{data.tipoPago}
+    p Correo: #{data.correo}

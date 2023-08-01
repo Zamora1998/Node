@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const app = express();
-
+const router = express.Router();
 //ConexionDB
 const uri =
   "mongodb+srv://johnnyzamoraguerrero:Mike_1998@aero.ggh1vwv.mongodb.net/Airlane?retryWrites=true&w=majority";
@@ -28,6 +28,70 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.redirect("/auth/login");
 });
+
+//renderizar vista confimacion
+app.get("/confirmacion", (req, res) => {
+  const data = JSON.parse(req.query.data);
+
+  // Renderiza la vista "confirmacion.pug" y pasa los datos
+  res.render("confirmacion", { data });
+});
+
+///comporardata
+
+
+
+app.post("/comprardata", async (req, res) => {
+  const { aerolineaId, correo } = req.body;
+
+  // Validar si el correo está presente en el formulario
+  if (!correo) {
+    return res.status(400).json({ message: "Correo no proporcionado." });
+  }
+
+  try {
+    // Buscar el usuario en la tabla de usuarios por su correo
+    const usuario = await User.findOne({ Correo: correo });
+
+    // Mostrar los datos del usuario en la consola
+    console.log("Datos del usuario:", usuario);
+
+    if (!usuario) {
+      return res.status(404).json({ message: "Usuario no encontrado." });
+    }
+
+    // Actualizar la aerolínea con el "_id" del usuario
+    const updatedAerolinea = await Aerolinea.findByIdAndUpdate(
+      aerolineaId,
+      { $set: { usuarioId: usuario._id } },
+      { new: true }
+    );
+
+    // Mostrar los datos de la aerolínea actualizada en la consola
+    console.log("Aerolínea actualizada:", updatedAerolinea);
+
+    // Verificar si la aerolínea existe
+    if (!updatedAerolinea) {
+      return res.status(404).json({ message: "Aerolínea no encontrada." });
+    }
+
+    // Aquí puedes realizar otras acciones o enviar una respuesta adecuada al cliente
+    return res
+      .status(200)
+      .json({ message: "Aerolínea vinculada con el usuario correctamente." });
+  } catch (error) {
+    // Mostrar el error completo en la consola
+    console.error("Error al vincular la aerolínea con el usuario:", error);
+    return res
+      .status(500)
+      .json({
+        message: "Error al vincular la aerolínea con el usuario.",
+        error: error.message,
+      });
+  }
+});
+
+
 
 
 //trae la data de aerolineas
@@ -71,6 +135,7 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./model/users"); // Esto puede estar incorrecto, asegúrate de tener el archivo correcto.
 const usersAuth = require("./routes/auth");
 const Aerolinea = require("./model/aerolineas.js");
+const User = require("./model/users");
 
 app.use("/auth", usersAuth);
 app.use("/users", usersRouter);

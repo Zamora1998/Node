@@ -30,6 +30,10 @@ const aerolineaSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+    tipoPago: {
+    type: String,
+    required: true,
+    }
 });
 
 // Creamos el modelo "Aerolinea" basado en el esquema
