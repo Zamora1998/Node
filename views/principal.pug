@@ -1,39 +1,34 @@
-
 extends layout
 
 block content
-    .containernew
-        h1 Lista de aerolíneas
-        table
-            tr
-                th Aerolinea
-                th Asiento
-                th Destino
-                th Fecha Llegada
-                th Fecha Salida
-                th Pais de Salida
-                th Precio
-                th Shopping Cart
-            each aerolinea in aerolineas
-                tr
-                    td= aerolinea.Aerolinea
-                    td= aerolinea.Asiento
-                    td= aerolinea.Destino
-                    td= aerolinea.FechaLlegada
-                    td= aerolinea.FechaSalida
-                    td= aerolinea.PaisSalida
-                    td= aerolinea.Precio
-                    td
-                        button(class="btn-comprar", data-id=aerolinea._id) Comprar
-    .modal-container.hide
-        .modal-content
-            span(class="close-btn") &times;
-            h2 Detalles del Vuelo
-            p(id="modal-aerolinea")
-            p(id="modal-asiento")
-            p(id="modal-destino")
-            p(id="modal-fecha-llegada")
-            p(id="modal-fecha-salida")
-            p(id="modal-pais-salida")
-            p(id="modal-precio")
-        script(src="/public/javascripts/modaldata.js")
+  .containernew
+    h1 Lista de aerolíneas
+    table
+      tr
+        th Aerolinea
+        th Asiento
+        th Destino
+        th Fecha Llegada
+        th Fecha Salida
+        th Pais de Salida
+        th Precio
+        th Shopping Cart
+      each aerolinea in aerolineas
+        tr
+          td= aerolinea.Aerolinea
+          td= aerolinea.Asiento
+          td= aerolinea.Destino
+          td= aerolinea.FechaLlegada
+          td= aerolinea.FechaSalida
+          td= aerolinea.PaisSalida
+          td= aerolinea.Precio
+          td
+            form(action="/comprar" method="POST", class="containernew")
+              input(type="hidden", class="form-input", name="aerolineaId", value=aerolinea._id)
+              input(type="hidden", class="form-input", name="asiento", value=aerolinea.Asiento)
+              input(type="hidden", class="form-input", name="destino", value=aerolinea.Destino)
+              input(type="hidden", class="form-input", name="fechaLlegada", value=aerolinea.FechaLlegada)
+              input(type="hidden", class="form-input", name="fechaSalida", value=aerolinea.FechaSalida)
+              input(type="hidden", class="form-input", name="paisSalida", value=aerolinea.PaisSalida)
+              input(type="hidden", class="form-input", name="precio", value=aerolinea.Precio)
+              button(type="submit", class="btn-comprar") Comprar

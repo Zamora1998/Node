@@ -21,6 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
 //redireccion a login
 
 // Redirección de localhost:3000 a localhost:3000/auth/login
