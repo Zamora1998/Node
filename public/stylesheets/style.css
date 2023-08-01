@@ -178,3 +178,29 @@ th {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
 }
 
+/* Estilos para el input del correo */
+#correo {
+  padding: 8px; /* Agrega un poco de espacio interno alrededor del texto */
+  border: 1px solid #ccc; /* Agrega un borde de 1 píxel con color gris */
+  border-radius: 4px; /* Agrega bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente */
+  width: 100%; /* Ancho del input al 100% del contenedor */
+  box-sizing: border-box; /* Incluye el borde y el padding en el ancho total */
+  margin-bottom: 10px; /* Agrega un margen inferior de 10px */
+}
+
+/* Estilos para el dropdown */
+#tipoPago {
+  padding: 8px; /* Agrega un poco de espacio interno alrededor del selector */
+  border: 1px solid #ccc; /* Agrega un borde de 1 píxel con color gris */
+  border-radius: 4px; /* Agrega bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente */
+  width: 100%; /* Ancho del selector al 100% del contenedor */
+  box-sizing: border-box; /* Incluye el borde y el padding en el ancho total */
+  margin-bottom: 10px; /* Agrega un margen inferior de 10px */
+}
+/* Estilos para las opciones dentro del dropdown */
+#tipoPago option {
+  padding: 8px; /* Espacio interno alrededor de cada opción */
+  font-size: 16px; /* Tamaño de fuente */
+}

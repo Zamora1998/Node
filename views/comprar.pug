@@ -36,12 +36,10 @@ block content
         label(for="precioField") Precio:
         input(type="text", id="precioField", value=precio, disabled)
 
-        // Agregar campos para Tipo Pago, Correo y botón de confirmar
         label(for="tipoPago") Tipo Pago:
-        select(name="tipoPago" id="tipoPago")
-        option(value="efectivo") Efectivo
-        option(value="visa") Visa
-
+        select(name="tipoPago", id="tipoPago")
+            option(value="efectivo") Efectivo
+            option(value="visa") Visa
         label(for="correo") Correo:
         input(type="email", name="correo" id="correo", required)
 
