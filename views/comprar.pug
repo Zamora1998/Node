@@ -1,12 +1,48 @@
 extends layout
 
 block content
-  h1 Comprar Vuelo
-  p Detalles del vuelo seleccionado:
-  p Aerolínea: #{aerolinea.Aerolinea}
-  p Asiento: #{aerolinea.Asiento}
-  p Destino: #{aerolinea.Destino}
-  p Fecha de Llegada: #{aerolinea.FechaLlegada}
-  p Fecha de Salida: #{aerolinea.FechaSalida}
-  p Pais de Salida: #{aerolinea.PaisSalida}
-  p Precio: #{aerolinea.Precio}
+  h1= title
+  .containercomprar
+    // Formulario para mostrar los datos
+    form(action="/confirmar" method="POST")
+        // Mostrar los datos recibidos como campos de texto ocultos
+        input(type="hidden", name="aerolineaId", value=aerolineaId)
+        input(type="hidden", name="asiento", value=asiento)
+        input(type="hidden", name="destino", value=destino)
+        input(type="hidden", name="fechaLlegada", value=fechaLlegada)
+        input(type="hidden", name="fechaSalida", value=fechaSalida)
+        input(type="hidden", name="paisSalida", value=paisSalida)
+        input(type="hidden", name="precio", value=precio)
+
+        // Agregar campos para mostrar los datos bloqueados y de solo lectura
+        label(for="aerolineaIdField") Aerolínea ID:
+        input(type="text", id="aerolineaIdField", value=aerolineaId, disabled)
+
+        label(for="asientoField") Asiento:
+        input(type="text", id="asientoField", value=asiento, disabled)
+
+        label(for="destinoField") Destino:
+        input(type="text", id="destinoField", value=destino, disabled)
+
+        label(for="fechaLlegadaField") Fecha Llegada:
+        input(type="text", id="fechaLlegadaField", value=fechaLlegada, disabled)
+
+        label(for="fechaSalidaField") Fecha Salida:
+        input(type="text", id="fechaSalidaField", value=fechaSalida, disabled)
+
+        label(for="paisSalidaField") País Salida:
+        input(type="text", id="paisSalidaField", value=paisSalida, disabled)
+
+        label(for="precioField") Precio:
+        input(type="text", id="precioField", value=precio, disabled)
+
+        // Agregar campos para Tipo Pago, Correo y botón de confirmar
+        label(for="tipoPago") Tipo Pago:
+        select(name="tipoPago" id="tipoPago")
+        option(value="efectivo") Efectivo
+        option(value="visa") Visa
+
+        label(for="correo") Correo:
+        input(type="email", name="correo" id="correo", required)
+
+        button(type="submit") Confirmar

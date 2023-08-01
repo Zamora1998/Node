@@ -41,8 +41,30 @@ app.get("/principal", async (req, res) => {
       .json({ message: "Error al obtener los datos de la base de datos" });
   }
 });
+// Ruta para la página comprar
+app.post('/comprar', (req, res) => {
+  // Obtén los datos enviados desde el formulario en principal.pug
+  const aerolineaId = req.body.aerolineaId;
+  const asiento = req.body.asiento;
+  const destino = req.body.destino;
+  const fechaLlegada = req.body.fechaLlegada;
+  const fechaSalida = req.body.fechaSalida;
+  const paisSalida = req.body.paisSalida;
+  const precio = req.body.precio;
 
+  // Aquí puedes realizar cualquier otra lógica que necesites con los datos recibidos
 
+  // Renderiza la vista "comprar.pug" y pasa los datos
+  res.render('comprar', {
+    aerolineaId,
+    asiento,
+    destino,
+    fechaLlegada,
+    fechaSalida,
+    paisSalida,
+    precio,
+  });
+});
 
 // Rutas
 const indexRouter = require("./routes/index");
