@@ -6,6 +6,8 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const app = express();
 const router = express.Router();
+const flash = require("connect-flash");
+
 //ConexionDB
 const uri =
   "mongodb+srv://johnnyzamoraguerrero:Mike_1998@aero.ggh1vwv.mongodb.net/Airlane?retryWrites=true&w=majority";
@@ -74,6 +76,7 @@ app.post("/comprardata", async (req, res) => {
     if (!updatedAerolinea) {
       return res.status(404).json({ message: "Aerolínea no encontrada." });
     }
+    req.flash("successMessage", "¡Compra realizada exitosamente!");
     res.redirect("/principal");
     // Aquí puedes realizar otras acciones o enviar una respuesta adecuada al cliente
     return res
