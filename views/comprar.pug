@@ -44,3 +44,5 @@ block content
         input(type="email", name="correo" id="correo", required)
 
         button(type="submit") Confirmar
+  if successMessage
+    .alert.alert-success= successMessage

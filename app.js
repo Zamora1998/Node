@@ -74,11 +74,9 @@ app.post("/comprardata", async (req, res) => {
     if (!updatedAerolinea) {
       return res.status(404).json({ message: "Aerolínea no encontrada." });
     }
-
+    res.redirect("/principal");
     // Aquí puedes realizar otras acciones o enviar una respuesta adecuada al cliente
     return res
-      .status(200)
-      .json({ message: "Aerolínea vinculada con el usuario correctamente." });
   } catch (error) {
     // Mostrar el error completo en la consola
     console.error("Error al vincular la aerolínea con el usuario:", error);

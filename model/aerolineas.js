@@ -33,7 +33,12 @@ const aerolineaSchema = new mongoose.Schema({
     tipoPago: {
     type: String,
     required: true,
-    }
+    },
+     usuarioId: {          // Este es el campo que vincula el usuario con la aerolínea
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',       // Referencia a la colección 'users' (nombre de la colección en la base de datos)
+    default: null,      // Valor por defecto, puede ser null inicialmente
+  },
 });
 
 // Creamos el modelo "Aerolinea" basado en el esquema
