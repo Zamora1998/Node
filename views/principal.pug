@@ -1,35 +1,39 @@
+
 extends layout
 
 block content
-  .containernew
-    h1 Lista de aerolíneas
-    table
-      tr
-        th Aerolinea
-        th Asiento
-        th Destino
-        th Fecha Llegada
-        th Fecha Salida
-        th Pais de Salida
-        th Precio
-        th Shopping Cart
-      each aerolinea in aerolineas
-        tr
-          td= aerolinea.Aerolinea
-          td= aerolinea.Asiento
-          td= aerolinea.Destino
-          td= aerolinea.FechaLlegada
-          td= aerolinea.FechaSalida
-          td= aerolinea.PaisSalida
-          td= aerolinea.Precio
-          td
-            
-            button(class="btn-comprar", data-id=aerolinea._id) Comprar
-    script.
-        $(document).ready(function() {
-            $(".btn-comprar").on("click", function() {
-                $(this).toggleClass("added-comprar");
-            });
-        });
-     script(src="/public/javascripts/modal.js") // Agrega aquí la ruta al archivo modal.js
-     
+    .containernew
+        h1 Lista de aerolíneas
+        table
+            tr
+                th Aerolinea
+                th Asiento
+                th Destino
+                th Fecha Llegada
+                th Fecha Salida
+                th Pais de Salida
+                th Precio
+                th Shopping Cart
+            each aerolinea in aerolineas
+                tr
+                    td= aerolinea.Aerolinea
+                    td= aerolinea.Asiento
+                    td= aerolinea.Destino
+                    td= aerolinea.FechaLlegada
+                    td= aerolinea.FechaSalida
+                    td= aerolinea.PaisSalida
+                    td= aerolinea.Precio
+                    td
+                        button(class="btn-comprar", data-id=aerolinea._id) Comprar
+    .modal-container.hide
+        .modal-content
+            span(class="close-btn") &times;
+            h2 Detalles del Vuelo
+            p(id="modal-aerolinea")
+            p(id="modal-asiento")
+            p(id="modal-destino")
+            p(id="modal-fecha-llegada")
+            p(id="modal-fecha-salida")
+            p(id="modal-pais-salida")
+            p(id="modal-precio")
+        script(src="/public/javascripts/modaldata.js")
