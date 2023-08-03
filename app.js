@@ -34,15 +34,11 @@ app.get("/", (req, res) => {
 //renderizar vista confimacion
 app.get("/confirmacion", (req, res) => {
   const data = JSON.parse(req.query.data);
-
   // Renderiza la vista "confirmacion.pug" y pasa los datos
   res.render("confirmacion", { data });
 });
 
 ///comporardata
-
-
-
 app.post("/comprardata", async (req, res) => {
   const { aerolineaId, correo } = req.body;
 
@@ -54,24 +50,19 @@ app.post("/comprardata", async (req, res) => {
   try {
     // Buscar el usuario en la tabla de usuarios por su correo
     const usuario = await User.findOne({ Correo: correo });
-
     // Mostrar los datos del usuario en la consola
     console.log("Datos del usuario:", usuario);
-
     if (!usuario) {
       return res.status(404).json({ message: "Usuario no encontrado." });
     }
-
     // Actualizar la aerolínea con el "_id" del usuario
     const updatedAerolinea = await Aerolinea.findByIdAndUpdate(
       aerolineaId,
       { $set: { usuarioId: usuario._id } },
       { new: true }
     );
-
     // Mostrar los datos de la aerolínea actualizada en la consola
     console.log("Aerolínea actualizada:", updatedAerolinea);
-
     // Verificar si la aerolínea existe
     if (!updatedAerolinea) {
       return res.status(404).json({ message: "Aerolínea no encontrada." });
@@ -91,8 +82,6 @@ app.post("/comprardata", async (req, res) => {
       });
   }
 });
-
-
 
 
 //trae la data de aerolineas
@@ -116,9 +105,6 @@ app.post('/comprar', (req, res) => {
   const fechaSalida = req.body.fechaSalida;
   const paisSalida = req.body.paisSalida;
   const precio = req.body.precio;
-
-  // Aquí puedes realizar cualquier otra lógica que necesites con los datos recibidos
-
   // Renderiza la vista "comprar.pug" y pasa los datos
   res.render('comprar', {
     aerolineaId,

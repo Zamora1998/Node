@@ -204,3 +204,9 @@ th {
   padding: 8px; /* Espacio interno alrededor de cada opción */
   font-size: 16px; /* Tamaño de fuente */
 }
+
+/* Ocultar barra de navegación en las páginas de registro y login */
+.registro-page .navbar,
+.login-page .navbar {
+  display: none;
+}

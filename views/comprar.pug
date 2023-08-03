@@ -1,6 +1,19 @@
 extends layout
 
 block content
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    a.navbar-brand(href="#") Airlane CR
+    button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarNav
+      ul.navbar-nav.ml-auto.align-items-start
+        li.nav-item
+          a.nav-link(href="/auth/principal") Inicio
+        li.nav-item
+          a.nav-link(href="") Mis vuelos
+        li.nav-item
+          a.nav-link(href="/auth/login") Logout
+
   h1= title
   .containercomprar
     // Formulario para mostrar los datos
