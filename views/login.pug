@@ -15,5 +15,7 @@ block content
 
       // Link to registration page
       a(href="/auth/register") Registrarse
-    if message
-      
+
+    // Mostrar el mensaje de error solo si hay un error y el campo 'error' no está vacío
+    if error && error.trim().length > 0
+      div.error-message(style='position: absolute; top: 0; left: 0; width: 100%; background-color: #f44336; color: white; text-align: center; padding: 10px;')= error

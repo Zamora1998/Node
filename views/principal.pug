@@ -1,6 +1,17 @@
 extends layout
 
 block content
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    a.navbar-brand(href="#") Airlane CR
+    button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarNav
+      ul.navbar-nav.ml-auto.align-items-start
+        li.nav-item
+          a.nav-link(href="/principal") Inicio
+        li.nav-item
+          a.nav-link(href="/auth/login") Logout
+
   .containernew
     h1 Lista de aerolíneas
     table
@@ -23,13 +34,12 @@ block content
           td= aerolinea.PaisSalida
           td= aerolinea.Precio
           td
-            
-            button(class="btn-comprar", data-id=aerolinea._id) Comprar
-    script.
-        $(document).ready(function() {
-            $(".btn-comprar").on("click", function() {
-                $(this).toggleClass("added-comprar");
-            });
-        });
-     script(src="/public/javascripts/modal.js") // Agrega aquí la ruta al archivo modal.js
-     
+            form(action="/comprar" method="POST", class="containernew")
+              input(type="hidden", class="form-input", name="aerolineaId", value=aerolinea._id)
+              input(type="hidden", class="form-input", name="asiento", value=aerolinea.Asiento)
+              input(type="hidden", class="form-input", name="destino", value=aerolinea.Destino)
+              input(type="hidden", class="form-input", name="fechaLlegada", value=aerolinea.FechaLlegada)
+              input(type="hidden", class="form-input", name="fechaSalida", value=aerolinea.FechaSalida)
+              input(type="hidden", class="form-input", name="paisSalida", value=aerolinea.PaisSalida)
+              input(type="hidden", class="form-input", name="precio", value=aerolinea.Precio)
+              button(type="submit", class="btn-comprar") Comprar
