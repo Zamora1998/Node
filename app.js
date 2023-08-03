@@ -34,28 +34,22 @@ app.get("/", (req, res) => {
 //renderizar vista confimacion
 app.get("/confirmacion", (req, res) => {
   const data = JSON.parse(req.query.data);
-  // Renderiza la vista "confirmacion.pug" y pasa los datos
   res.render("confirmacion", { data });
 });
 
 ///comporardata
 app.post("/comprardata", async (req, res) => {
   const { aerolineaId, correo } = req.body;
-
-  // Validar si el correo está presente en el formulario
   if (!correo) {
     return res.status(400).json({ message: "Correo no proporcionado." });
   }
-
   try {
     // Buscar el usuario en la tabla de usuarios por su correo
     const usuario = await User.findOne({ Correo: correo });
-    // Mostrar los datos del usuario en la consola
     console.log("Datos del usuario:", usuario);
     if (!usuario) {
       return res.status(404).json({ message: "Usuario no encontrado." });
     }
-    // Actualizar la aerolínea con el "_id" del usuario
     const updatedAerolinea = await Aerolinea.findByIdAndUpdate(
       aerolineaId,
       { $set: { usuarioId: usuario._id } },
@@ -63,16 +57,12 @@ app.post("/comprardata", async (req, res) => {
     );
     // Mostrar los datos de la aerolínea actualizada en la consola
     console.log("Aerolínea actualizada:", updatedAerolinea);
-    // Verificar si la aerolínea existe
     if (!updatedAerolinea) {
       return res.status(404).json({ message: "Aerolínea no encontrada." });
     }
-    //req.flash("successMessage", "¡Compra realizada exitosamente!");
     res.redirect("/principal");
-    // Aquí puedes realizar otras acciones o enviar una respuesta adecuada al cliente
     return res
   } catch (error) {
-    // Mostrar el error completo en la consola
     console.error("Error al vincular la aerolínea con el usuario:", error);
     return res
       .status(500)
@@ -87,8 +77,8 @@ app.post("/comprardata", async (req, res) => {
 //trae la data de aerolineas
 app.get("/principal", async (req, res) => {
   try {
-    const aerolineas = await Aerolinea.find(); // Consulta todas las aerolíneas desde la base de datos
-    res.render("principal", { aerolineas }); // Pasa las aerolíneas a la plantilla "principal.pug"
+    const aerolineas = await Aerolinea.find(); 
+    res.render("principal", { aerolineas }); 
   } catch (err) {
     res
       .status(500)
@@ -146,5 +136,15 @@ app.set("view engine", "pug");
 app.get("/", (req, res) => {
   res.redirect("/auth/login");
 });
+
+
+//renderisza la data de misvuelos
+router.get("/misvuelos", (req, res) => {
+  // Aquí debe ir la lógica para obtener y renderizar los vuelos del usuario
+  res.render("misvuelos", {
+    /* datos de los vuelos */
+  });
+});
+
 
 module.exports = app;
