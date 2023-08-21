@@ -51,7 +51,7 @@ router.post("/login", async (req, res) => {
           "Credenciales inválidas. Por favor, verifica tus credenciales e intenta de nuevo.",
       });
     }
-    res.redirect("/principal");
+    res.redirect("/job");
   } catch (err) {
     res.status(500).json({ message: "Error de servidor" });
   }

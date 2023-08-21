@@ -118,6 +118,7 @@ footer .column {
 }
 .containernew {
   /*background-image: url("ruta/imagen-fondo.jpg"); /* Ruta de la imagen de fondo */
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
   background-size: cover;
   background-position: center;
   padding: 20px;
@@ -178,6 +179,20 @@ th {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
 }
 
+
+.containersubir {
+  text-align: center; /* Centra el contenido del contenedor horizontalmente */
+  /* Estilos adicionales para el contenedor del formulario (si los tienes) */
+}
+.containersubir {
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  backdrop-filter: blur(20px); /* Aplicar efecto de desenfoque al fondo */
+  padding: 20px; /* Espacio interior del contenedor */
+  border-radius: 10px; /* Bordes redondeados */
+  max-width: 400px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Centrar horizontalmente */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
 /* Estilos para el input del correo */
 #correo {
   padding: 8px; /* Agrega un poco de espacio interno alrededor del texto */
@@ -203,4 +218,13 @@ th {
 #tipoPago option {
   padding: 8px; 
   font-size: 16px; 
+}
+
+.containersucess {
+  max-width: 600px; /* Ajusta el ancho del contenedor según tus preferencias */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  text-align: center;
 }

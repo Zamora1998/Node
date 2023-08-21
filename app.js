@@ -7,6 +7,9 @@ const mongoose = require("mongoose");
 const app = express();
 const router = express.Router();
 const flash = require("connect-flash");
+const multer = require("multer"); // Middleware para manejar la carga de archivos
+const Curriculum = require("./model/curriculum");
+const { GridFsStorage } = require("multer-gridfs-storage"); 
 
 //ConexionDB
 const uri =
@@ -109,18 +112,19 @@ app.post('/comprar', (req, res) => {
 
 // Rutas
 const indexRouter = require("./routes/index");
-const usersRouter = require("./model/users"); // Esto puede estar incorrecto, asegúrate de tener el archivo correcto.
+const usersRouter = require("./model/users"); 
 const usersAuth = require("./routes/auth");
 const Aerolinea = require("./model/aerolineas.js");
 const User = require("./model/users");
+const jobRouter = require("./routes/job");
 
 app.use("/auth", usersAuth);
 app.use("/users", usersRouter);
 
 // Manejo de errores
-app.use(function (req, res, next) {
-  next(createError(404));
-});
+//app.use(function (req, res, next) {
+  //next(createError(404));
+//});
 
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
@@ -137,13 +141,48 @@ app.get("/", (req, res) => {
   res.redirect("/auth/login");
 });
 
-
 //renderisza la data de misvuelos
 router.get("/misvuelos", (req, res) => {
-  // Aquí debe ir la lógica para obtener y renderizar los vuelos del usuario
   res.render("misvuelos", {
-    /* datos de los vuelos */
   });
+});
+
+//carga de archivo PDF
+app.use("/job", jobRouter);
+
+const storage = new GridFsStorage({
+  url: uri,
+  file: (req, file) => {
+    return {
+      bucketName: "uploads",
+      filename: file.originalname,
+    };
+  },
+});
+
+const upload = multer({ storage });
+
+// Ruta para manejar la carga de archivos y vincularlo al modelo "Curriculum"
+app.post("/upload", upload.single("pdfFile"), async (req, res) => {
+  try {
+    // Crea un nuevo documento "Curriculum" con el nombre proporcionado y la referencia al archivo PDF
+    const nuevoCurriculum = new Curriculum({
+      Nombre: req.body.Nombre,
+      pdfFile: {
+        filename: req.file.originalname,
+        fileId: req.file.id,
+      },
+    });
+    await nuevoCurriculum.save();
+
+    // Renderiza la vista de éxito y muestra el mensaje antes de redirigir
+    res.render("success"); // Renderiza el archivo success.pug
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .send("Error al subir el archivo y vincularlo al curriculum.");
+  }
 });
 
 
