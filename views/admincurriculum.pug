@@ -10,13 +10,17 @@ block content
             li.nav-item
             a.nav-link(href="/job") Inicio
             li.nav-item
-            a.nav-link(href="/admincurriculum") Buscar curriculum
-            li.nav-item
             a.nav-link(href="/auth/login") Logout
-    h1
-    .containersubir 
-        form(action="/upload", method="post", enctype="multipart/form-data")
-            input(type="text", name="Nombre", placeholder="Ingrese su nombre")
-            input(type="file", name="pdfFile")
-            button(type="submit") Subir PDF
+    .containercurr
+        h1 Lista de Currículums
+        form(action="/admincurriculum", method="get")
+        .container
+            input(type="text", name="nombreFiltro", placeholder="Filtrar por nombre")
+            button(type="submit") Filtrar
+        ul
+        each curriculum in curriculums
+            li
+            strong= curriculum.Nombre
+            if curriculum.pdfFile
+                a(href=`/download/${curriculum.Nombre}`) Descargar PDF
 

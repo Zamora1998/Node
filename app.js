@@ -184,6 +184,56 @@ app.post("/upload", upload.single("pdfFile"), async (req, res) => {
       .send("Error al subir el archivo y vincularlo al curriculum.");
   }
 });
-
-
 module.exports = app;
+
+//filtro para curriculum
+
+app.get("/admincurriculum", async (req, res) => {
+  try {
+    const { nombreFiltro } = req.query;
+    let query = {};
+    if (nombreFiltro) {
+      query.Nombre = { $regex: new RegExp(nombreFiltro, "i") };
+    }
+
+    const curriculums = await Curriculum.find(query);
+    res.render("admincurriculum", { curriculums });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error al obtener la lista de currículums.");
+  }
+});
+
+
+app.get("/download/:nombre", async (req, res) => {
+  try {
+    const nombre = req.params.nombre;
+
+    // Buscar el documento en la colección "curriculums" por el nombre
+    const curriculum = await Curriculum.findOne({ Nombre: nombre });
+
+    if (!curriculum) {
+      return res.status(404).send("Currículum no encontrado.");
+    }
+
+    const fileId = curriculum.pdfFile.fileId;
+
+    const bucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
+      bucketName: "uploads.files",
+    });
+
+    const downloadStream = bucket.openDownloadStream(new ObjectID(fileId));
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename=${curriculum.Nombre}.pdf`
+    );
+
+    downloadStream.pipe(res);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error al descargar el archivo PDF.");
+  }
+});
+

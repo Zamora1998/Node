@@ -228,3 +228,14 @@ th {
   background-color: #f0f0f0;
   text-align: center;
 }
+
+
+.containercurr {
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  backdrop-filter: blur(20px); /* Aplicar efecto de desenfoque al fondo */
+  padding: 20px; /* Espacio interior del contenedor */
+  border-radius: 10px; /* Bordes redondeados */
+  max-width: 400px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Centrar horizontalmente */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
